@@ -80,6 +80,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("Client disconnected:", socket.id);
+    console.log("Rooms after disconnect:", socket.rooms);
   });
 });
 app.use(express.json());

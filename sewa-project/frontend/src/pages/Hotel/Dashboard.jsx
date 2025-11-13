@@ -275,7 +275,7 @@ useEffect(() => {
               onClick={() => setActiveTab('reports')}
             >
               <BarChart3 size={20} />
-              View Reports
+              View Reports 
             </button>
            
 
