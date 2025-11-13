@@ -1,0 +1,558 @@
+/* NGO Dashboard Styles - Matching Hotel Dashboard Design */
+.ngo-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar Styles */
+.ngo-sidebar {
+  width: 275px;
+  background: linear-gradient(180deg, #059669 0%, #047857 100%);
+  color: white;
+  position: fixed;
+  height: 100vh;
+  left: -260px;
+  top: 0;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.ngo-sidebar-open {
+  left: 0;
+}
+
+.ngo-sidebar-header {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ngo-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #f1f5f9;
+}
+
+.ngo-sidebar-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.ngo-sidebar-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.ngo-sidebar-nav {
+  padding: 16px 0;
+}
+
+.ngo-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+}
+
+.ngo-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+.ngo-nav-item.active {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-right: 3px solid #10b981;
+}
+
+.ngo-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #10b981, #047857);
+}
+
+/* Main Content */
+.ngo-main-content {
+  flex: 1;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+
+}
+
+.ngo-topbar {
+  background: white;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ngo-menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  color: #64748b;
+}
+
+.ngo-menu-toggle:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.ngo-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ngo-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ngo-user-profile:hover {
+  background-color: #e2e8f0;
+}
+
+.ngo-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #047857);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Content Area */
+.ngo-content-area {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.ngo-dashboard-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ngo-dashboard-header {
+  margin-bottom: 32px;
+}
+
+.ngo-dashboard-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.025em;
+}
+
+.ngo-dashboard-header p {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 400;
+}
+
+.ngo-guidelines-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  margin-bottom: 32px;
+}
+
+.ngo-guidelines-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.ngo-guidelines-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.ngo-guidelines-card li::marker {
+  color: #10b981;
+}
+
+.ngo-guidelines-card strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Stats Grid */
+.ngo-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.ngo-stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+  border: 1px solid #f1f5f9;
+}
+
+.ngo-stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #e2e8f0;
+}
+
+.ngo-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.ngo-stat-icon.donations {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+
+.ngo-stat-icon.requests {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.ngo-stat-icon.distributions {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.ngo-stat-icon.people {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.ngo-stat-content h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.ngo-stat-content p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 4px 0;
+}
+
+.ngo-stat-trend {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 500;
+}
+
+/* Dashboard Cards */
+.ngo-dashboard-cards {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.ngo-dashboard-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.ngo-dashboard-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+}
+
+/* Recent Activity */
+.ngo-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ngo-activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.ngo-activity-item:hover {
+  background-color: #f1f5f9;
+}
+
+.ngo-activity-title {
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+}
+
+.ngo-activity-details {
+  color: #64748b;
+  font-size: 12px;
+  margin: 0;
+}
+
+.ngo-activity-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.ngo-status {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.ngo-status.accepted {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.ngo-status.distributed {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.ngo-status.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.ngo-activity-date {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* Quick Actions */
+.ngo-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ngo-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.ngo-action-btn.primary {
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+}
+
+.ngo-action-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.ngo-action-btn.secondary {
+  background-color: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.ngo-action-btn.secondary:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* Sidebar Overlay */
+.ngo-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Placeholder Content */
+.ngo-placeholder-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed #e2e8f0;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .ngo-sidebar {
+    position: static;
+    left: 0;
+  }
+  
+  .ngo-main-content {
+    margin-left: 260px;
+  }
+  
+  .ngo-menu-toggle {
+    display: none;
+  }
+  
+  .ngo-sidebar-close {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ngo-dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .ngo-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ngo-content-area {
+    padding: 16px;
+  }
+  
+  .ngo-topbar {
+    padding: 12px 16px;
+  }
+  
+  .ngo-dashboard-header h1 {
+    font-size: 24px;
+  }
+  
+  .ngo-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ngo-stat-card {
+    padding: 16px;
+  }
+  
+  .ngo-action-buttons {
+    gap: 8px;
+  }
+}
+
+
+
+
+.ngo-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between avatar and text */
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #3b82f6; /* blue, or any color */
+  color: #fff; /* white text for avatar letter */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.ngo-user-profile span {
+  color: #000; /* make the hotelName text black */
+  font-weight: 500;
+  font-size: 14px;
+}

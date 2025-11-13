@@ -1,0 +1,299 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Lora:ital,wght@0,400;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+/*----------------------------HEADER SECTION FORMATTING------------------------------*/
+.header {
+  color: white;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 170px; 
+  max-height: 170px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 50px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/*----------------------------HERO SECTION------------------------------*/
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
+}
+
+.home-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    text-align: left;             
+    width: 100%;                 
+    top: 25%;                   
+    padding: 20px 50px;          
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 0 10px 10px 0; 
+  }
+  
+  .hero-text h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+  }
+  
+  .hero-text h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: #ED0707;  
+  }
+  
+  .hero-text p {
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+    margin: 5px 0;  
+  }
+  
+/*-------------------------------NAVIGATION-----------------------------*/
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  flex-shrink: 0;
+  max-width: calc(100vw - 100px); /* Prevent overflow */
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navbar a:hover, .navbar a.active {
+  color: #ED0707;
+  text-decoration: underline;
+}
+
+/*-------------------------------ERROR OR LOADING----------------------------------*/
+.toast-overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  cursor: not-allowed;
+}
+
+.toast-message {
+  font-family: "Poppins", sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  min-width: 300px;
+  max-width: 80%;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.toast-message.processing {
+  background-color: #007bff;
+}
+
+.toast-message.error {
+  background-color: #dc3545;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/*----------------------------HERO TEXT SLOGAN STYLE------------------------------*/
+.Slogan {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 2;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Big heading */
+  .Slogan:first-of-type {
+    font-size: 80px;
+    top: 35%; /* Better positioning */
+  }
+  
+  /* Red accent heading */
+  .Slogan:nth-of-type(2) {
+    font-size: 80px;
+    color: #ED0707;
+    top: 50%;
+  }
+  
+  /* Small descriptive text */
+  .Slogan:nth-of-type(3),
+  .Slogan:nth-of-type(4) {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px auto;
+    max-width: 800px;
+  }
+  
+  /* Responsive for mobile */
+  @media (max-width: 768px) {
+    .header {
+      padding: 0 20px;
+    }
+    
+    .right-section {
+      max-width: calc(100vw - 40px);
+    }
+    
+    .navbar {
+      gap: 15px;
+    }
+    
+    .navbar a {
+      font-size: 14px;
+      padding: 3px 8px;
+    }
+    
+    .Slogan:first-of-type,
+    .Slogan:nth-of-type(2) {
+      font-size: 50px;
+      top: 30%;
+    }
+    
+    .Slogan:nth-of-type(2) {
+      top: 45%;
+    }
+    
+    .Slogan:nth-of-type(3),
+    .Slogan:nth-of-type(4) {
+      font-size: 16px;
+      max-width: 90%;
+    }
+  }
+
+/*-------------------------------LOGIN DROPDOWN-----------------------------*/
+.login-dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  color: #ED0707;
+  text-decoration: underline;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 35px;
+  right: 0; /* Changed from left: 0 to right: 0 */
+  background-color: rgba(0,0,0,0.85);
+  border-radius: 5px;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  z-index: 20; /* Increased z-index */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #ED0707;
+  color: white;
+}
+
+/* Mobile responsive for dropdown */
+@media (max-width: 768px) {
+  .dropdown-btn {
+    font-size: 14px;
+    padding: 3px 8px;
+  }
+  
+  .dropdown-content {
+    min-width: 140px;
+    right: -10px; /* Slight adjustment for mobile */
+  }
+  
+  .dropdown-content a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
