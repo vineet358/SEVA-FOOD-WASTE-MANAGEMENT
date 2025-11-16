@@ -189,7 +189,7 @@ const ChatPanel = ({ userType = "hotel" }) => {
   if (!userId) {
     return (
       <div className="chat-container">
-        <div className="chat-empty">Please login to access chat.</div>
+        <div className="chat-empty">Please login and verify your credentails  to access chat.</div>
       </div>
     );
   }
