@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
 
-          {/* Role-based login using AuthSystem */}
+          
           <Route path="/auth/individual" element={<AuthSystem initialUserType="individual" />} />
           <Route path="/auth/ngo" element={<AuthSystem initialUserType="ngo" />} />
           <Route path="/auth/hotel" element={<AuthSystem initialUserType="hotel" />} />
