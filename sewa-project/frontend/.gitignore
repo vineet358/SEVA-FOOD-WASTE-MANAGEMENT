@@ -7,18 +7,56 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+
+# Local environment variables
 *.local
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Cache
+.cache/
+.cache-loader/
+npm-cache/
+yarn-cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Logs from frameworks
+.next/
+.nuxt/
+out/
+
+# Optional: TypeScript build cache
+*.tsbuildinfo
+
+# Optional: Log files from PM2 / process managers
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: misc
+coverage/
+temp/
+tmp/
