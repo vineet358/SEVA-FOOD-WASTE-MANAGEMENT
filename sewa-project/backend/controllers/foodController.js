@@ -11,7 +11,7 @@ import fs from "fs";
 import bcrypt from "bcrypt";
 
 dotenv.config();
-console.log("GMAIL_APP_PASSWORD =", process.env.GMAIL_APP_PASSWORD);
+
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -141,7 +141,7 @@ export const addFood = async (req, res) => {
       });
     }
 
-    // Parse hotelExpiryAt
+ 
     let hotelExpiryAt;
     if (typeof hotelExpiryRaw === 'string') {
       hotelExpiryAt = new Date(hotelExpiryRaw);
@@ -151,7 +151,7 @@ export const addFood = async (req, res) => {
     
     console.log('Parsed hotelExpiryAt:', hotelExpiryAt, 'Valid:', !isNaN(hotelExpiryAt.getTime()));
     
-    // Validate hotelExpiryAt
+    
     if (isNaN(hotelExpiryAt.getTime())) {
       return res.status(400).json({ 
         message: "Invalid hotelExpiryAt date format",
@@ -168,7 +168,7 @@ export const addFood = async (req, res) => {
 
     const now = new Date();
 
-    // Validation checks
+  
     if (preparedAt > now) {
       return res.status(400).json({ message: "Preparation time cannot be in the future" });
     }
@@ -198,7 +198,6 @@ export const addFood = async (req, res) => {
       valid: !isNaN(finalExpiryAt.getTime())
     });
 
-    // Validate finalExpiryAt before saving
     if (isNaN(finalExpiryAt.getTime())) {
       return res.status(500).json({ 
         message: "Error calculating final expiry date",
@@ -210,10 +209,10 @@ export const addFood = async (req, res) => {
       });
     }
 
-    // Determine status based on expiry
+   
     const status = finalExpiryAt < now ? "expired" : "available";
 
-    // Create new food document with explicit date values
+   
     const foodData = {
       hotelId,
       hotelName: hotelRecord.hotelName,

@@ -791,7 +791,7 @@ const AdminAnalytics = () => {
                 <h3>Profile Snapshot</h3>
                 <div className="profile-grid">
                   <div>
-                    <strong>{hotelDetail.hotel.hotelName}</strong>
+                    <strong className='hotelName'>{hotelDetail.hotel.hotelName}</strong>
                     <p>{hotelDetail.hotel.address}</p>
                     <p>{hotelDetail.hotel.city}</p>
                   </div>

@@ -36,14 +36,14 @@ export const getReports = async (req, res) => {
 
     const takenDonations = await Food.find({ hotelId: objectHotelId, status: "taken" });
 
-    // Stats
+
     const totalDonations = takenDonations.length;
     const totalServings = takenDonations.reduce((sum, d) => sum + (d.servesPeople || 0), 0);
     const peopleFed = totalServings;
     const ngosServed = [...new Set(takenDonations.map(d => d.acceptedByNgo))].length;
     const avgDonationSize = totalDonations ? Math.round(totalServings / totalDonations) : 0;
 
-    // Monthly data
+
     const getMonthName = (date) => date.toLocaleString('default', { month: 'short' });
     const monthlyDataMap = {};
     takenDonations.forEach(d => {
@@ -58,7 +58,7 @@ export const getReports = async (req, res) => {
       servings: monthlyDataMap[month].servings
     }));
 
-    // Food type distribution
+
     const foodTypeMap = {};
     takenDonations.forEach(d => {
       const type = d.foodType || 'Other';
@@ -70,7 +70,7 @@ export const getReports = async (req, res) => {
       color: type === 'Vegetarian' ? '#10b981' : type === 'Non-Vegetarian' ? '#3b82f6' : '#8b5cf6'
     }));
 
-    // NGO distribution
+
     const ngoMap = {};
     takenDonations.forEach(d => {
       const ngo = d.acceptedByNgo || 'Unknown';

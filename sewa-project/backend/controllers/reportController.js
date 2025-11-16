@@ -26,7 +26,7 @@ const getDataRange = (period) => {
   return fromDate;
 };
 
-// Helper to mark expired donations
+
 const markExpiredDonations = async () => {
   try {
     await Food.updateMany(
@@ -46,7 +46,7 @@ export const getOverviewReport = async (req, res) => {
 
     await markExpiredDonations(); 
 
-    // Only count donations actually accepted by NGO
+  
     const donations = await Food.find({
       acceptedByNgoId: ngoId,
       acceptedAt: { $gte: fromDate },

@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Send email to admin when NGO/Hotel registers
+
 export const sendAdminNotification = async (userType, userData, licensePath) => {
   try {
     const subject = `New ${userType} Registration - License Verification Required`;
