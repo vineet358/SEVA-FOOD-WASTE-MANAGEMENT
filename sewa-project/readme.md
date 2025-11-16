@@ -1,582 +1,663 @@
-SEWA — Smart Excess Food Welfare & Assistance System
+SEWA 3.0 — Next-Generation Food Redistribution Platform
+A Fully Reimagined Architecture, Workflow, and Feature Specification for 2025+
+⚡ 1. Introduction
 
-A Complete Technical, Operational & Architectural Documentation
-Version: 2.0
-Maintainer: SEWA Development Team
+SEWA 3.0 represents the next evolution of the Smart Excess Food Welfare & Assistance System.
+Unlike the earlier versions that focused primarily on donation workflows and OTP-based verification, SEWA 3.0 introduces a modular, distributed, intelligent, and scalable ecosystem.
 
-🔰 Introduction
+SEWA 3.0 now supports:
 
-SEWA (Smart Excess Food Welfare & Assistance System) is a full-stack real-time food redistribution platform designed to reduce food waste by enabling hotels, restaurants, and event organizers to donate surplus food to NGOs and verified community service organizations.
+Microservices architecture
 
-The platform focuses on:
+Distributed real-time processing
 
-Food safety
+AI-powered NGO matching
 
-Real-time communication
+Predictive modelling for donation trends
 
-Verified pickup workflows
+Secure event-driven ingestion
 
-Admin monitoring & governance
+Geo-based routing
 
-Complaint system
+A fully redesigned dashboard system
 
-Complete donation traceability
+Enhanced admin governance
 
-This document is the full technical guide, including:
+Volunteer management
 
-System architecture
+Public-facing transparency modules
 
-Project motivation
+This document explains the full 3.0 design.
 
-All core modules
+🌐 2. Vision of SEWA 3.0
+Transforming SEWA from a simple "donation pickup" app into a national-level intelligent food redistribution network.
+SEWA 3.0 goals:
 
-Database structure
+Reduce wasted food across India at scale.
 
-API documentation
+Automate NGO selection using ML.
 
-Deployment notes
+Enable cross-city donation routing.
 
-Testing strategy
+Provide local authorities with detailed oversight.
 
-Security policies
+Support volunteers like NSS/NCC groups.
 
-Feature roadmap
+Allow donors to schedule future donations.
 
-Developer guidelines
+Create transparent public dashboards for impact visualization.
 
-Data flow diagrams
+🏗️ 3. High-Level Architecture (SEWA 3.0)
+                      ┌────────────────────────────────────┐
+                      │           API GATEWAY              │
+                      └───────────────┬────────────────────┘
+                                      │
+             ┌─────────────────────────────────────────────────────┐
+             │              MICROSERVICE CLUSTER                   │
+             └─────────────────────────────────────────────────────┘
+                        │        │         │          │
+                        ▼        ▼         ▼          ▼
 
-And more…
+       ┌────────────┐ ┌──────────────┐ ┌──────────────┐ ┌───────────────────┐
+       │ Donation    │ │ NGO Service  │ │ AI Matching  │ │ Notification Hub   │
+       │ Service     │ │              │ │ Engine        │ │ (Socket + Email)   │
+       └────────────┘ └──────────────┘ └──────────────┘ └───────────────────┘
 
-This README is intentionally long and extremely detailed.
+                        ▼        ▼         ▼          ▼
 
-🌍 Problem SEWA Solves
+       ┌────────────┐ ┌──────────────┐ ┌──────────────┐ ┌───────────────────┐
+       │ Analytics   │ │ Volunteer     │ │ Routing &     │ │ Admin Compliance  │
+       │ Engine      │ │ Service       │ │ Geolocation   │ │ Service           │
+       └────────────┘ └──────────────┘ └──────────────┘ └───────────────────┘
 
-Every day, huge amounts of food are wasted in hotels and events. At the same time, thousands go to bed hungry. The fundamental challenges include:
 
-Lack of coordination between donors and NGOs
+Key Architectural Shifts in SEWA 3.0:
 
-No real-time visibility of available food
+Event-driven pipeline
 
-Delays causing food spoilage
+Horizontal scaling
 
-No verification system ensuring authenticity
+Separate analytic workloads
 
-No structured communication channel
+Cached geo-queries
 
-No admin oversight or compliance
+ML integrated into workflow
 
-No evidence-based complaint resolution
+Multi-layer role system
 
-No audit logs
+🔐 4. Authentication & Access Control (3.0)
 
-No performance tracking
+SEWA 3.0 introduces a 5-level access model:
 
-SEWA eliminates all these issues.
+Role	Access
+Hotel	Create donations, manage history
+NGO	Accept, pick up, report
+Admin	System governance
+Volunteers	Pickup & delivery assistance
+Supervisors	Local city inspectors
+New 3.0 security features:
 
-🎯 Vision & Mission
-Vision
+JWT with rotating refresh tokens
 
-To build a sustainable and automated real-time food donation network across India, ensuring no edible food goes to waste.
+IP-based risk scoring
 
-Mission
+Multi-device session tracking
 
-Build trust-driven donation workflows
+Admin-approved device registration
 
-Provide real-time visibility
+QR-based identity verification
 
-Ensure food safety through expiry tracking
+Suspicious activity detection
 
-Maintain an audit-ready record of every transaction
+🍱 5. SEWA 3.0 Donation Workflow (Deep Dive)
 
-Empower NGOs with reliable information
+SEWA 3.0 completely rebuilds the donation lifecycle into nine distinct event stages:
 
-Enable administrators to oversee system health
+DonationAdded → Validation → PublicFeed → NGOSelection
+→ AI Ranking → Acceptance → PickupPrep → Arrival → Verification
 
-🧩 Key Modules Overview
+Stage Breakdown:
+1. DonationAdded
 
-SEWA follows a role-based architecture:
+Hotel uploads:
 
-👨‍🍳 HOTEL (Donor)
+Food type
 
-Hotels can:
+Weight/quantity
 
-Add food donations
+Images
+
+Location coordinates
+
+Prepared/expiry timestamps
+
+Safety checklist
+
+2. Validation
+
+Automated backend validation:
+
+Image scanning (optional)
+
+Expiry threshold
+
+Duplicate entry detection
+
+Hotel blacklist check
+
+3. PublicFeed
+
+Donation appears in:
+
+City feed
+
+Nearby feed
+
+Emergency feed (if critical food type)
+
+4. NGOSelection
+
+NGOs in selected radius are notified.
+
+5. AI Ranking (SEWA ML Engine)
+
+NGOs ranked by:
+
+Distance
+
+Past pickup reliability
+
+NGO rating
+
+Vehicle availability
+
+Pickup capacity
+
+6. Acceptance
+
+NGO accepts donation.
+
+7. PickupPrep
+
+NGO prepares:
+
+Vehicle assignment
+
+Volunteer team
+
+ETA sharing
+
+8. Arrival
+
+Volunteer or NGO arrives.
+
+9. Verification
+
+Verification types:
+
+OTP
+
+QR scan
+
+Location match
+
+Timestamp validation
+
+🛰️ 6. Real-Time Events (SEWA 3.0)
+
+SEWA 3.0 introduces 22 new socket events.
+
+Donation Events
+
+donation:created
+
+donation:validated
+
+donation:assigned
+
+donation:accepted
+
+donation:expired
+
+donation:picked
+
+donation:verified
+
+donation:cancelled
+
+NGO Events
+
+ngo:online
+
+ngo:offline
+
+ngo:eta-update
+
+ngo:capacity-update
+
+Volunteer Events
+
+volunteer:assigned
+
+volunteer:location-update
+
+Admin Events
+
+admin:alert
+
+admin:flag
+
+admin:blacklist
+
+admin:warning
+
+Chat Events
+
+chat:new
+
+chat:typing
+
+chat:delivered
+
+chat:read
+
+🧠 7. SEWA 3.0 AI Engine
+Capabilities:
+
+NGO ranking model
+
+Donation expiry prediction
+
+Route optimization
+
+Food category OCR (optional)
+
+Volunteer assignment scoring
+
+ML Model Inputs:
+
+Geo distance
+
+NGO pickup frequency
+
+NGO past compliance
+
+Vehicle availability
+
+Traffic patterns
+
+Time of day
+
+Donation type
+
+Hotel rating
+
+Output:
+
+A ranked list of NGOs + reliability score.
+
+🗺️ 8. Geolocation Engine (SEWA Maps)
+Features:
+
+Crow-fly distance
+
+Real road distance
+
+ETA algorithms
+
+Locality clustering
+
+Travel radius optimization
+
+Realtime location of volunteers
+
+Heatmap of donation hotspots
+
+🔥 9. Volunteer Management (New in 3.0)
+
+SEWA 3.0 introduces a dedicated volunteer module.
+
+Volunteers can:
+
+Register
+
+View tasks
+
+Mark availability
+
+Get assigned automatically
+
+Send live location
+
+Confirm pickups
 
 Upload images
 
-Select prepared & expiry time
+Volunteer Levels:
 
-Provide pickup location
+Level 1 (New)
 
-Receive instant accept/reject notifications
+Level 2 (Trained)
 
-Generate & verify OTP
+Level 3 (Supervisor)
 
-View their donation history
+📊 10. Admin Dashboard (Massively Expanded)
+Admin panels now include:
+1. Donation Analytics
 
-Get ratings & reviews
+City-wise
 
-Manage profile and compliance
+Hotel-wise
 
-🏥 NGO (Receiver)
+NGO-wise
 
-NGOs can:
+Time-based
 
-View available donations by city
+Category-based
 
-Accept donation in real-time
+2. Real-Time Monitoring
 
-Generate OTP for pickup verification
+Active donations
 
-Chat with donors
+Live map
 
-Upload proof of pickup if required
+Volunteer movement
 
-Provide feedback
+Peak hour density
 
-Raise complaints
+3. Complaint & Compliance
 
-View history and statistics
+High-risk hotels
 
-🛡️ ADMIN (Authority)
+NGO fraud detection
 
-Admins can:
+Evidence processing
 
-Review complaints (with images)
+4. System Health
 
-Approve/reject users
+CPU usage
 
-Blacklist hotels
+Queue usage
 
-View system-wide analytics
+Socket traffic
 
-Track donation patterns
+API response times
 
-Audit logs
+📡 11. Notification Engine (SEWA Notify)
 
-Generate reports
+Supports:
 
-💡 SEWA Features — Detailed Listing
+Email
 
-Below is an expanded features list (150+ lines).
-This helps teachers see a large contribution.
+SMS (optional)
 
-1. Real-Time Donation Lifecycle
+Push notifications
 
-Add donation
+System alerts
 
-Store metadata
+WebSocket events
 
-Image upload
+Email Templates:
 
-Store expiry time
+OTP mail
 
-Filter by city
+NGO assignment
 
-Real-time updates
+Blacklist warning
 
-Auto-expiry
+Account approval
 
-2. User Authentication & Security
+Volunteer assignment
 
-Role-based auth
+Expiry warning
 
-Hashed passwords
+🧱 12. Database Models (SEWA 3.0)
 
-JWT tokens
+SEWA 3.0 databases include:
 
-Protected routes
+Hotel
 
-Session validation
+NGO
 
-Timeout handling
+Donation
 
-3. OTP-Based Verification Workflow
+ExpiryTracker
 
-Unique OTP per donation
+MatchingScore
 
-Auto-expiry OTP
+Volunteer
 
-Email notification
+Assignment
 
-Pickup verification log
-
-Tamper protection
-
-Admin view
-
-4. Hotel Compliance & Blacklisting
-
-Complaint system
-
-Automatic risk scoring
-
-Admin manual blacklist
-
-Appeal workflow
-
-Hotel performance report
-
-5. NGO Tools & Dashboard
-
-Search food
-
-Filter by category
-
-View donation timeline
-
-Accept/reject
-
-OTP generator
-
-Pickup confirmation
-
-Feedback submission
-
-6. Admin Dashboard
-
-User verification panel
-
-Complaint center
-
-Analytics & charts
-
-Peak donation time detection
-
-Food category analytics
-
-Real-time map (optional)
-
-Monthly summary generator
-
-7. Chat System
-
-Real-time chat
-
-Multi-room support
-
-Typing indicators
-
-Read receipts
-
-History stored in DB
-
-File/image support
-
-8. Notification System
-
-Socket alerts
-
-Email alerts
-
-In-app alerts
-
-Error alerts
-
-Expiry alerts
-
-9. Media Handling
-
-Multer-based upload
-
-Image compression
-
-Storage directory cleanup
-
-Cloud upload option
-
-Preview support
-
-10. Audit & Logs
-
-User logs
-
-Action logs
-
-OTP logs
-
-Complaint logs
-
-Error logs
-
-Activity feeds
-
-11. Performance & Scaling
-
-Lazy loading
-
-Pagination
-
-Caching (optional)
-
-Indexing strategies
-
-Rate limiting
-
-🏗️ System Architecture
- ┌──────────────────┐       Socket.io        ┌────────────────────┐
- │     FRONTEND      │ <--------------------> │      BACKEND        │
- │ React + Vite       │                      │ Node/Express + JWT   │
- └────────┬──────────┘                      └─────────┬────────────┘
-          │   REST APIs                                   │
-          ▼                                               ▼
- ┌──────────────────┐                       ┌──────────────────────┐
- │ Authentication    │ -------------------> │ MongoDB (Mongoose)   │
- │ Donation Listing  │ <------------------- │ Models + Controllers │
- │ Chat UI           │                      │ Validation + Indexes │
- └──────────────────┘                      └──────────────────────┘
-
-📦 Tech Stack
-Frontend
-
-React.js
-
-Vite
-
-Axios
-
-Socket.io Client
-
-Lucide Icons
-
-React Router
-
-React Toastify
-
-CSS Modules / Tailwind
-
-Backend
-
-Express.js
-
-MongoDB
-
-Mongoose
-
-Socket.io
-
-Nodemailer
-
-Multer
-
-JWT
-
-Bcrypt
-
-Node Cron (optional)
-
-Hosting
-
-Render (Backend)
-
-Vercel / Netlify (Frontend)
-
-MongoDB Atlas (Database)
-
-🗂️ Project Structure (Full Expanded)
-sewa-project/
-│
-├── backend/
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── hotelController.js
-│   │   ├── ngoController.js
-│   │   ├── adminController.js
-│   │   └── foodController.js
-│   ├── middlewares/
-│   │   ├── authMiddleware.js
-│   │   ├── roleMiddleware.js
-│   │   └── errorHandler.js
-│   ├── models/
-│   │   ├── Hotel.js
-│   │   ├── Ngo.js
-│   │   ├── Food.js
-│   │   ├── Pickup.js
-│   │   ├── Review.js
-│   │   └── Complaint.js
-│   ├── routes/
-│   ├── utils/
-│   ├── uploads/
-│   ├── server.js
-│   ├── .env
-│   └── package.json
-│
-└── frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── components/
-    │   ├── hooks/
-    │   ├── context/
-    │   ├── styles/
-    │   └── App.jsx
-    ├── vite.config.js
-    └── package.json
-
-🛢️ Database Models (Highly Expanded)
-
-Each model contains indexes, validation rules, timestamps, relations.
-
-(… 40+ lines per model …)
-
-Hotels
-NGOs
-Food
-OTP
-Pickup
 Complaint
+
 Review
-ChatMessage
 
-(Full details omitted here to keep message within limits — but you will have 100+ total model lines.)
+GeoCache
 
-🔌 Full API Documentation (200+ lines)
+SystemLog
 
-Includes:
+Each model includes:
 
-Auth APIs
+Indexes
 
-Hotel APIs
+Reference population
 
-NGO APIs
+Timestamps
 
-Admin APIs
+Soft-delete field
 
-Food APIs
+Audit tracking
 
-OTP APIs
+🧪 13. Testing Framework
+Types of tests:
 
-Chat APIs
+Unit tests
 
-Complaint APIs
+Integration tests
 
-Review APIs
+Load tests
 
-Each with:
+Socket tests
 
-Method
+Security tests
 
-Route
+E2E tests
 
-Payload
+Tools:
 
-Validation rules
+Jest
 
-Responses
+Supertest
 
-Errors
+Artillery
 
-Sample curl commands
+Postman
 
-(… This will easily reach 200–250 lines…)
+Cypress
 
-🧠 Data Flow: Donation Lifecycle
-Hotel → Adds donation → Listed publicly → NGO accepts →
-NGO generates OTP → Sends to hotel → Hotel verifies →
-Status updated to "picked" → Review allowed.
+📁 14. API Endpoints (SEWA 3.0)
+Donation Service
 
+POST /donation/create
 
-(… 30 lines of detailed explanation…)
+GET /donation/all
 
-📈 Admin Analytics (Deep Explanation)
+GET /donation/nearby
 
-Admin can view:
+POST /donation/validate
 
-Per-hotel donation graph
+POST /donation/assign-ngo
 
-Per-NGO pickup performance
+POST /donation/verify
 
-Blacklist history
+NGO Service
 
-Complaint rates
+GET /ngo/available
 
-Resolution time
+POST /ngo/update-capacity
 
-Daily donation volume
+GET /ngo/dashboard
 
-Peak hours heatmap
+Volunteer Service
 
-Category-wise donations
+POST /volunteer/register
 
-🛠️ Installation Guide
+POST /volunteer/update-location
 
-Step-by-step environment setup for:
+GET /volunteer/tasks
 
-Backend
+Admin Service
 
-Frontend
+GET /admin/flags
 
-MongoDB
+POST /admin/blacklist
 
-Environment variables
+GET /admin/system-health
 
-SMTP setup
+🧵 15. Event Queue (RabbitMQ/Kafka Support)
 
-Socket setup
+SEWA 3.0 supports:
 
-Render deployment
+Async event pipelines
 
-(… 50 lines…)
+Dead letter queues
 
-🧪 Testing Strategy
+Retry mechanism
 
-Unit tests, integration tests, Postman test collection, load testing approach, mock data, and cron job testing.
+Delay queues
 
-🛡️ Security Policies
+Bulk event dispatch
 
-Password hashing
+Examples:
 
-JWT expiration
+donation.created queue
 
-Rate limiting
+otp.generated queue
 
-CORS policy
+admin.alert queue
 
-Upload validation
+🧱 16. Infrastructure (Cloud Architecture)
+Recommended Deployment:
+Frontend → Vercel
+Backend → Render / AWS ECS
+Storage → S3
+Database → MongoDB Atlas
+Cache → Redis
+Queue → RabbitMQ / Kafka
 
-Sanitization
 
-Audit logs
+Supports:
 
-Admin privilege hardening
+Autoscaling
 
-🚀 Roadmap (Future SEWA 3.0)
+Load balancing
 
-AI-based NGO matching
+Health checks
 
-Food quality prediction ML
+Zero-downtime deploys
 
-Image-based food category detection
+🔒 17. Security Enhancements (3.0)
+New Features:
 
-Ultra-fast real-time dashboard
+API rate limiting
 
-Predictive donation heatmap
+XSS sanitization
 
-Offline-first PWA
+File validation
 
-Advanced donor reward system
+Token rotation
 
-Volunteer matching
+OAuth optional
 
-Multi-language support
+IP tracking
 
-WhatsApp-based donation system
+Suspicious behavior alerts
 
-🤝 Contributors & Credits
+🔧 18. Maintenance & Cron Jobs
 
-Development Team
+Daily Cron Jobs:
 
-NGOs
+Expiry cleanup
 
-Hotel Partners
+Queue cleanup
 
-Admins
+Log rotation
 
-UI/UX Contributors
+Blacklist review
 
-📜 License
+GeoCache refresh
 
-SEWA is developed for academic and social welfare purposes.
-All rights reserved © 2025.
+Stale donation filter
 
-📄 END README.md
+Auto ML model retraining (optional)
+
+🧰 19. Developer Guidelines (SEWA 3.0)
+Rules:
+
+No inline SQL
+
+Controllers < 200 lines
+
+Use services for logic
+
+Use DTOs for type safety
+
+Use validators
+
+Use try/catch patterns
+
+Follow commit naming rules
+
+Commit format:
+
+feat: add new volunteer location tracking
+fix: incorrect donation expiry logic
+chore: update dependencies
+docs: update API docs
+
+
+Branch guidelines:
+
+main (stable)
+
+staging (test)
+
+feature/*
+
+bugfix/*
+
+🚀 20. Roadmap to SEWA 4.0
+Planned features:
+
+Drone delivery support
+
+Blockchain donation receipts
+
+Zero-trust security model
+
+AI-based fraud detection
+
+Region-level donation optimization
+
+Mobile app for citizens
+
+Integration with Swiggy/Zomato waste platforms
+
+Government API linking
+
+❤️ 21. Acknowledgements
+
+Thanks to:
+
+All NGOs
+
+Hotel partners
+
+Volunteer teams
+
+Developers
+
+Research & policy contributors
+
+📄 END SEWA 3.0 DOCUMENTATION
